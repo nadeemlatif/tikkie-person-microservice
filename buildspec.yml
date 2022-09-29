@@ -1,10 +1,9 @@
 version: 0.2
-
-
+run-as: root
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 14.x
     commands:
       - echo install serverless framework
       - npm install -g serverless
@@ -16,7 +15,7 @@ phases:
     commands:
       - echo deployment started `date`
       - echo deploy serverless framework custom codebase
-      - sls deploy -v -s $ENV_NAME
+      - serverless deploy -sls $ENV_NAME
   post_build:
     commands:
       - echo post build completed on `date`
