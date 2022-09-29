@@ -1,0 +1,69 @@
+service: aws-tikkie-person-microservice
+frameworkVersion: '3'
+
+custom:
+  tableName: 'person-dynamodb-table-${sls:stage}'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchWriteItem
+            - dynamodb:BatchGetItem
+            - dynamodb:ConditionCheckItem
+          Resource:
+            - Fn::GetAtt: [ PersonsDynamoTable, Arn ]
+  environment:
+    PERSON_TABLE: ${self:custom.tableName}
+
+functions:
+  getPerson:
+    handler: apis/api.handler #We can also define direct method here like api.getPerson
+    events:
+      - http: 'GET /persons/{proxy+}'
+
+  createPerson:
+    handler: apis/api.handler #We can also define direct method here like api.createPerson
+    events:
+      - http: 'POST /persons'
+      
+  filterPerson:
+    handler: apis/api.handler #We can also define direct method here like api.filterPerson
+    events:
+      - http: 'POST /persons/filter'
+
+resources:
+  Resources:
+    PersonsDynamoTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: personId
+            AttributeType: S
+          - AttributeName: createdBy
+            AttributeType: N
+        KeySchema:
+          - AttributeName: personId
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+        - IndexName: createdByIndex
+          KeySchema:
+            - AttributeName: createdBy
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline

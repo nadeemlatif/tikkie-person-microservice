@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "af9bb8b4-1cc3-40e1-af9d-627c6230bbfc",
+		"name": "Serverless",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "414587"
+	},
+	"item": [
+		{
+			"name": "Persons",
+			"item": [
+				{
+					"name": "Filters",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "USER-JWT",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMTU0N30.H0FtWmDYATIGR1S3fLu8pZHuSJuGSIc20uhV2wiY0YXVDMvFeultTpFtfLRJVtO4CXcMgNK8p412ew1Kt94pd_nC1Bo48IsWTO9oPIQN0Rs7jyncFsluL9AjhD91nIxUjFSHhxZf9x7xOGKIeuCZTZxGdiZVxfVpE9iGf7BMhrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"listType\": \"all\"\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/persons/filter",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"persons",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "USER-JWT",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMTU0N30.H0FtWmDYATIGR1S3fLu8pZHuSJuGSIc20uhV2wiY0YXVDMvFeultTpFtfLRJVtO4CXcMgNK8p412ew1Kt94pd_nC1Bo48IsWTO9oPIQN0Rs7jyncFsluL9AjhD91nIxUjFSHhxZf9x7xOGKIeuCZTZxGdiZVxfVpE9iGf7BMhrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Usman\",\n    \"lastName\": \"Khwaha\",\n    \"phoneNumber\": \"+31627114785\",\n    \"email\": \"nadeem@crickslab.com\",\n    \"address\": {\n        \"street\": \"oosterhoutstarat 3\",\n        \"houseNumber\": \"20\",\n        \"postalCode\": \"1034KL\",\n        \"state\": \"Almere\",\n        \"city\": \"Almere\",\n        \"country\": \"Netherlands\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/persons",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMDM3MX0.MJ8s_iZb8FxS3ajQ0lSeo0jJnZTq_oVBsv9wPIo57LnYJHCgoiSaUeqMJseV4txvd70Wp9upoTdafgUWCzAqKAP7Xwr-slTaNfojkzgTn6KLFPL1bEbm_rlhb4BayizKn6SWK9_6XYQOFsPlYqwrdHw191gMmGHsyz1W0h2bpW88dVUDZ8X9TySzuGTgwLpp3xELCAO0NjJMSh6P_YMNFkmouCCrkjj9FMWreF1HZNDm7ITQWGRXyrWkQcUcK0fhCHu7MqkS4QtHTZaYiLzwwv7_kYkliD9lYfUAu56K7dVAi7DjU7T1O_cTfczbeRdpusMZv-plY45ab2vjCbMXSA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "USER-JWT",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMTU0N30.H0FtWmDYATIGR1S3fLu8pZHuSJuGSIc20uhV2wiY0YXVDMvFeultTpFtfLRJVtO4CXcMgNK8p412ew1Kt94pd_nC1Bo48IsWTO9oPIQN0Rs7jyncFsluL9AjhD91nIxUjFSHhxZf9x7xOGKIeuCZTZxGdiZVxfVpE9iGf7BMhrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/persons/89de71ad6c1a271eb808ce18b36680f609514e8b",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"persons",
+								"89de71ad6c1a271eb808ce18b36680f609514e8b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Persons",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "USER-JWT",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMTU0N30.H0FtWmDYATIGR1S3fLu8pZHuSJuGSIc20uhV2wiY0YXVDMvFeultTpFtfLRJVtO4CXcMgNK8p412ew1Kt94pd_nC1Bo48IsWTO9oPIQN0Rs7jyncFsluL9AjhD91nIxUjFSHhxZf9x7xOGKIeuCZTZxGdiZVxfVpE9iGf7BMhrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"listType\": \"mine\"\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/persons/filter",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"persons",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persons By Person ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "USER-JWT",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJOYWRlZW0iLCJsYXN0TmFtZSI6IkFraHRhciIsImlhdCI6MTY2NDQwMTU0N30.H0FtWmDYATIGR1S3fLu8pZHuSJuGSIc20uhV2wiY0YXVDMvFeultTpFtfLRJVtO4CXcMgNK8p412ew1Kt94pd_nC1Bo48IsWTO9oPIQN0Rs7jyncFsluL9AjhD91nIxUjFSHhxZf9x7xOGKIeuCZTZxGdiZVxfVpE9iGf7BMhrU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"personId\": \"8e91ac84a93558d3ba7a911db1baf8c2370b559c\"\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/persons/filter",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"persons",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "aws-tikkie-person-microservice",
+  "version": "1.0.0",
+  "description": "Tikkie Person Handler",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validation": "^4.1.0",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "object-hash": "^3.0.0",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^10.3.2"
+  }
+}
