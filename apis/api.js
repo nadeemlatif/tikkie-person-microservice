@@ -71,6 +71,10 @@ app.post("/persons", validate(personCreateValidation, {}, {}), async function (r
 
   try {
     await dynamoDbClient.put(params).promise();
+
+    // TODO: Here we can broadcast persons details to anyother services. 
+    // TikkiePusherService.publish(params.Item, 'PersonService', 'Created')
+    
     res.json({
       status: "OK",
       mmessage: "Person created successfully.",
