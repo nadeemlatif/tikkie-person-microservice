@@ -38,15 +38,21 @@ const personCreateValidation = {
 
 
 const PERSON_TABLE = process.env.PERSON_TABLE;
+
 const dynamoDbClientParams = {};
 if (process.env.IS_OFFLINE) {
   dynamoDbClientParams.region = 'localhost'
   dynamoDbClientParams.endpoint = 'http://localhost:8000'
 }
+
 const dynamoDbClient = new AWS.DynamoDB.DocumentClient(dynamoDbClientParams);
 
 app.use(express.json());
 
+/**
+ * Api to create a person
+ * persons:store 
+ */
 app.post("/persons", validate(personCreateValidation, {}, {}), async function (req, res) {
 
   const { firstName, lastName, phoneNumber, email, address } = req.body;
@@ -87,6 +93,10 @@ app.post("/persons", validate(personCreateValidation, {}, {}), async function (r
   }
 });
 
+/**
+ * Api to filters the records
+ * persons:filter 
+ */
 app.post("/persons/filter", async function (req, res) {
 
   let params = {
@@ -136,6 +146,10 @@ app.post("/persons/filter", async function (req, res) {
 
 });
 
+/**
+ * Api to access person details.
+ * persons:show(personId) 
+ */
 app.get("/persons/:personId", async function (req, res) {
   const params = {
     TableName: PERSON_TABLE,
@@ -158,12 +172,20 @@ app.get("/persons/:personId", async function (req, res) {
   }
 });
 
+/**
+ * 404 Flow
+ * If nothing found.  
+ */
 app.use((req, res, next) => {
   return res.status(404).json({
     error: "Not Found",
   });
 });
 
+/**
+ * Validation Errors
+ * return 422 if data validaiton is faled. 
+ */
 app.use(function(err, req, res, next) {
   if (err instanceof ValidationError) {
     res.status(422).json({ error: err });
